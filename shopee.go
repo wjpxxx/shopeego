@@ -1,4 +1,4 @@
-package shopee
+package shopeego
 
 import (
 	"github.com/wjpxxx/shopeego/auth"

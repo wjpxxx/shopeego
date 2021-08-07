@@ -35,8 +35,7 @@ import (
 package main
 
 import (
-	"testing"
-
+	"github.com/wjpxxx/shopeego"
 	"github.com/wjpxxx/shopeego/commonentity"
 	shopeeConfig "github.com/wjpxxx/shopeego/config"
 
