@@ -10,6 +10,7 @@ import (
 	"github.com/wjpxxx/letgo/lib"
 	"github.com/wjpxxx/shopeego/commonentity"
 	logisticsEntity "github.com/wjpxxx/shopeego/logistics/entity"
+	firstmileentity "github.com/wjpxxx/shopeego/firstmile/entity"
 )
 
 //Config
@@ -89,6 +90,7 @@ func (c *Config) Http(requestMethod, method string, data interface{}, out interf
 	} else {
 		result = ihttp.PostJson(fullURL, data)
 	}
+	//fmt.Println(result.Dump)
 	if result.Err != "" {
 		return errors.New(result.Err)
 	}
@@ -100,6 +102,12 @@ func (c *Config) Http(requestMethod, method string, data interface{}, out interf
 		s := lib.StringToObject(result.Body(), out)
 		if !s {
 			rs := out.(*logisticsEntity.DownloadShippingDocumentResult)
+			rs.File = result.BodyByte
+		}
+	}else if method == "first_mile/get_waybill" {
+		s := lib.StringToObject(result.Body(), out)
+		if !s {
+			rs := out.(*firstmileentity.GetWaybillResult)
 			rs.File = result.BodyByte
 		}
 	} else {

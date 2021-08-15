@@ -5,6 +5,7 @@ import (
 
 	"github.com/wjpxxx/shopeego/commonentity"
 	shopeeConfig "github.com/wjpxxx/shopeego/config"
+	firstmileentity "github.com/wjpxxx/shopeego/firstmile/entity"
 
 	//"github.com/wjpxxx/shopeego/order"
 	//orderEntity "github.com/wjpxxx/shopeego/order/entity"
@@ -58,5 +59,7 @@ func TestShop(t *testing.T) {
 		ExpireIn:     14376,
 		ShopID:       9714,
 	}))
-	fmt.Println(GetApi("shopee-api-v2").GetMerchantInfo())
+	fmt.Println(GetApi("shopee-api-v2").FGetChannelList(firstmileentity.GetChannelListRequest{
+		Region: "CN",
+	}))
 }

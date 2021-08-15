@@ -19,6 +19,12 @@ import (
 	productEntity "github.com/wjpxxx/shopeego/product/entity"
 	"github.com/wjpxxx/shopeego/shop"
 	shopEntity "github.com/wjpxxx/shopeego/shop/entity"
+	"github.com/wjpxxx/shopeego/firstmile"
+	firstmileentity "github.com/wjpxxx/shopeego/firstmile/entity"
+	"github.com/wjpxxx/shopeego/payment"
+	paymententity "github.com/wjpxxx/shopeego/payment/entity"
+	"github.com/wjpxxx/shopeego/discount"
+	discountentity "github.com/wjpxxx/shopeego/discount/entity"
 )
 
 //Shopeer
@@ -131,6 +137,36 @@ type Shopeer interface {
 	//merchant
 	GetMerchantInfo() merchantEntity.GetMerchantInfoResult
 	GetShopListByMerchant(pageNo, pageSize int) merchantEntity.GetShopListByMerchantResult
+	//firstmile
+	GetUnbindOrderList(params firstmileentity.GetUnbindOrderListRequest) firstmileentity.GetUnbindOrderListResult
+	GetDetail(params firstmileentity.GetDetailRequest) firstmileentity.GetDetailResult
+	GenerateFirstMileTrackingNumber(params firstmileentity.GenerateFirstMileTrackingNumberRequest) firstmileentity.GenerateFirstMileTrackingNumberResult
+	BindFirstMileTrackingNumber(params firstmileentity.BindFirstMileTrackingNumberRequest) firstmileentity.BindFirstMileTrackingNumberResult
+	UnbindFirstMileTrackingNumber(params firstmileentity.UnbindFirstMileTrackingNumberRequest) firstmileentity.UnbindFirstMileTrackingNumberResult 
+	GetTrackingNumberList(params firstmileentity.GetTrackingNumberListRequest) firstmileentity.GetTrackingNumberListResult
+	GetWaybill(params firstmileentity.GetWaybillRequest) firstmileentity.GetWaybillResult
+	FGetChannelList(params firstmileentity.GetChannelListRequest) firstmileentity.GetChannelListResult
+	//payment
+	GetEscrowDetail(params paymententity.GetEscrowDetailRequest) paymententity.GetEscrowDetailResult
+	SetShopInstallmentStatus(params paymententity.SetShopInstallmentStatusRequest) paymententity.SetShopInstallmentStatusResult
+	GetShopInstallmentStatus() paymententity.GetShopInstallmentStatusResult
+	GetPayoutDetail(params paymententity.GetPayoutDetailRequest) paymententity.GetPayoutDetailResult
+	SetItemInstallmentStatus(params paymententity.SetItemInstallmentStatusRequest) paymententity.SetItemInstallmentStatusResult
+	GetItemInstallmentStatus(params paymententity.GetItemInstallmentStatusRequest) paymententity.GetItemInstallmentStatusResult
+	GetPaymentMethodList(params paymententity.GetPaymentMethodListRequest) paymententity.GetPaymentMethodListResult
+	GetWalletTransactionList(params paymententity.GetWalletTransactionListRequest) paymententity.GetWalletTransactionListResult
+	GetEscrowList(params paymententity.GetEscrowListRequest) paymententity.GetEscrowListResult
+	//discount
+	AddDiscount(params discountentity.AddDiscountRequest) discountentity.AddDiscountResult
+	AddDiscountItem(params discountentity.AddDiscountItemRequest) discountentity.AddDiscountItemResult
+	DeleteDiscount(params discountentity.DeleteDiscountRequest) discountentity.DeleteDiscountResult 
+	DeleteDiscountItem(params discountentity.DeleteDiscountItemRequest) discountentity.DeleteDiscountItemResult
+	GetDiscount(params discountentity.GetDiscountRequest) discountentity.GetDiscountResult
+	GetDiscountList(params discountentity.GetDiscountListRequest) discountentity.GetDiscountListResult
+	UpdateDiscount(params discountentity.UpdateDiscountRequest) discountentity.UpdateDiscountResult
+	UpdateDiscountItem(params discountentity.UpdateDiscountItemRequest) discountentity.UpdateDiscountItemResult
+	EndDiscount(params discountentity.EndDiscountRequest) discountentity.EndDiscountResult
+
 }
 
 //Shopee
@@ -143,6 +179,9 @@ type Shopee struct {
 	mediaspace.MediaSpace
 	shop.Shop
 	merchant.Merchant
+	firstmile.FirstMile
+	payment.Payment
+	discount.Discount
 }
 
 //shopeeList 接口列表
@@ -159,6 +198,9 @@ func Register(name string, cfg *shopeeConfig.Config) {
 		mediaspace.MediaSpace{Config: cfg},
 		shop.Shop{Config: cfg},
 		merchant.Merchant{Config: cfg},
+		firstmile.FirstMile{Config:cfg},
+		payment.Payment{Config:cfg},
+		discount.Discount{Config:cfg},
 	}
 }
 

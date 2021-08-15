@@ -4,12 +4,12 @@ import (
     "github.com/wjpxxx/letgo/lib"
 )
 
-type GetUnbindOrderListResult struct{
+type SetShopInstallmentStatusResult struct{
     RequestId	string	`json:"request_id"`
     Error	string	`json:"error"`
     Message	string	`json:"message"`
-    Response	GetUnbindOrderListResponseResponseEntity	`json:"response"`
+    Response	SetShopInstallmentStatusResponseResponseEntity	`json:"response"`
 }
-func (g GetUnbindOrderListResult) String() string {
+func (g SetShopInstallmentStatusResult) String() string {
     return lib.ObjectToString(g)
 }
