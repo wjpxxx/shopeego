@@ -25,6 +25,25 @@ import (
 	paymententity "github.com/wjpxxx/shopeego/payment/entity"
 	"github.com/wjpxxx/shopeego/discount"
 	discountentity "github.com/wjpxxx/shopeego/discount/entity"
+	"github.com/wjpxxx/shopeego/bundledeal"
+	bundledealentity "github.com/wjpxxx/shopeego/bundledeal/entity"
+	"github.com/wjpxxx/shopeego/addondeal"
+	addondealentity "github.com/wjpxxx/shopeego/addondeal/entity"
+	"github.com/wjpxxx/shopeego/voucher"
+	voucherentity "github.com/wjpxxx/shopeego/voucher/entity"
+	"github.com/wjpxxx/shopeego/followprize"
+	followprizeentity "github.com/wjpxxx/shopeego/followprize/entity"
+	"github.com/wjpxxx/shopeego/toppicks"
+	toppicksentity "github.com/wjpxxx/shopeego/toppicks/entity"
+	"github.com/wjpxxx/shopeego/shopcategory"
+	shopcategoryentity "github.com/wjpxxx/shopeego/shopcategory/entity"
+	"github.com/wjpxxx/shopeego/returns"
+	returnsentity "github.com/wjpxxx/shopeego/returns/entity"
+	"github.com/wjpxxx/shopeego/accounthealth"
+	accounthealthentity "github.com/wjpxxx/shopeego/accounthealth/entity"
+	"github.com/wjpxxx/shopeego/sellerchat"
+	sellerchatentity "github.com/wjpxxx/shopeego/sellerchat/entity"
+	
 )
 
 //Shopeer
@@ -166,6 +185,80 @@ type Shopeer interface {
 	UpdateDiscount(params discountentity.UpdateDiscountRequest) discountentity.UpdateDiscountResult
 	UpdateDiscountItem(params discountentity.UpdateDiscountItemRequest) discountentity.UpdateDiscountItemResult
 	EndDiscount(params discountentity.EndDiscountRequest) discountentity.EndDiscountResult
+	//bundledeal
+	AddBundleDeal(params bundledealentity.AddBundleDealRequest) bundledealentity.AddBundleDealResult
+	AddBundleDealItem(params bundledealentity.AddBundleDealItemRequest) bundledealentity.AddBundleDealItemResult
+	DeleteBundleDeal(params bundledealentity.DeleteBundleDealRequest) bundledealentity.DeleteBundleDealResult
+	DeleteBundleDealItem(params bundledealentity.DeleteBundleDealItemRequest) bundledealentity.DeleteBundleDealItemResult
+	EndBundleDeal(params bundledealentity.EndBundleDealRequest) bundledealentity.EndBundleDealResult 
+	GetBundleDealList(params bundledealentity.GetBundleDealListRequest) bundledealentity.GetBundleDealListResult
+	GetBundleDeal(params bundledealentity.GetBundleDealRequest) bundledealentity.GetBundleDealResult
+	GetBundleDealItem(params bundledealentity.GetBundleDealItemRequest) bundledealentity.GetBundleDealItemResult
+	UpdateBundleDeal(params bundledealentity.UpdateBundleDealRequest) bundledealentity.UpdateBundleDealResult
+	UpdateBundleDealItem(params bundledealentity.UpdateBundleDealItemRequest) bundledealentity.UpdateBundleDealItemResult
+	//addondeal
+	AddAddOnDealMainItem(params addondealentity.AddAddOnDealMainItemRequest) addondealentity.AddAddOnDealMainItemResult 
+	AddAddOnDealSubItem(params addondealentity.AddAddOnDealSubItemRequest) addondealentity.AddAddOnDealSubItemResult 
+	AddAddOnDeal(params addondealentity.AddAddOnDealRequest) addondealentity.AddAddOnDealResult 
+	DeleteAddOnDealMainItem(params addondealentity.DeleteAddOnDealMainItemRequest) addondealentity.DeleteAddOnDealMainItemResult 
+	DeleteAddOnDealSubItem(params addondealentity.DeleteAddOnDealSubItemRequest) addondealentity.DeleteAddOnDealSubItemResult 
+	DeleteAddOnDeal(params addondealentity.DeleteAddOnDealRequest) addondealentity.DeleteAddOnDealResult 
+	EndAddOnDeal(params addondealentity.EndAddOnDealRequest) addondealentity.EndAddOnDealResult 
+	GetAddOnDealList(params addondealentity.GetAddOnDealListRequest) addondealentity.GetAddOnDealListResult 
+	GetAddOnDealMainItem(params addondealentity.GetAddOnDealMainItemRequest) addondealentity.GetAddOnDealMainItemResult 
+	GetAddOnDealSubItem(params addondealentity.GetAddOnDealSubItemRequest) addondealentity.GetAddOnDealSubItemResult 
+	GetAddOnDeal(params addondealentity.GetAddOnDealRequest) addondealentity.GetAddOnDealResult 
+	UpdateAddOnDealMainItem(params addondealentity.UpdateAddOnDealMainItemRequest) addondealentity.UpdateAddOnDealMainItemResult 
+	UpdateAddOnDealSubItem(params addondealentity.UpdateAddOnDealSubItemRequest) addondealentity.UpdateAddOnDealSubItemResult 
+	UpdateAddOnDeal(params addondealentity.UpdateAddOnDealRequest) addondealentity.UpdateAddOnDealResult
+	//voucher
+	AddVoucher(params voucherentity.AddVoucherRequest) voucherentity.AddVoucherResult 
+	DeleteVoucher(params voucherentity.DeleteVoucherRequest) voucherentity.DeleteVoucherResult 
+	EndVoucher(params voucherentity.EndVoucherRequest) voucherentity.EndVoucherResult 
+	UpdateVoucher(params voucherentity.UpdateVoucherRequest) voucherentity.UpdateVoucherResult 
+	GetVoucherDetail(params voucherentity.GetVoucherDetailRequest) voucherentity.GetVoucherDetailResult 
+	GetVoucherList(params voucherentity.GetVoucherListRequest) voucherentity.GetVoucherListResult 
+	//followprize
+	AddFollowPrize(params followprizeentity.AddFollowPrizeRequest) followprizeentity.AddFollowPrizeResult 
+    DeleteFollowPrize(params followprizeentity.DeleteFollowPrizeRequest) followprizeentity.DeleteFollowPrizeResult 
+    EndFollowPrize(params followprizeentity.EndFollowPrizeRequest) followprizeentity.EndFollowPrizeResult 
+    UpdateFollowPrize(params followprizeentity.UpdateFollowPrizeRequest) followprizeentity.UpdateFollowPrizeResult 
+    GetFollowPrizeDetail(params followprizeentity.GetFollowPrizeDetailRequest) followprizeentity.GetFollowPrizeDetailResult 
+    GetFollowPrizeList(params followprizeentity.GetFollowPrizeListRequest) followprizeentity.GetFollowPrizeListResult
+	//toppicks
+    GetTopPicksList(params toppicksentity.GetTopPicksListRequest) toppicksentity.GetTopPicksListResult 
+    AddTopPicks(params toppicksentity.AddTopPicksRequest) toppicksentity.AddTopPicksResult 
+    UpdateTopPicks(params toppicksentity.UpdateTopPicksRequest) toppicksentity.UpdateTopPicksResult 
+    DeleteTopPicks(params toppicksentity.DeleteTopPicksRequest) toppicksentity.DeleteTopPicksResult
+	//shopcategory
+    AddShopCategory(params shopcategoryentity.AddShopCategoryRequest) shopcategoryentity.AddShopCategoryResult 
+    GetShopCategoryList(params shopcategoryentity.GetShopCategoryListRequest) shopcategoryentity.GetShopCategoryListResult 
+    DeleteShopCategory(params shopcategoryentity.DeleteShopCategoryRequest) shopcategoryentity.DeleteShopCategoryResult 
+    UpdateShopCategory(params shopcategoryentity.UpdateShopCategoryRequest) shopcategoryentity.UpdateShopCategoryResult 
+    AddItemList(params shopcategoryentity.AddItemListRequest) shopcategoryentity.AddItemListResult 
+    CGetItemList(params shopcategoryentity.GetItemListRequest) shopcategoryentity.GetItemListResult 
+    DeleteItemList(params shopcategoryentity.DeleteItemListRequest) shopcategoryentity.DeleteItemListResult
+	//returns
+    GetReturnDetail(params returnsentity.GetReturnDetailRequest) returnsentity.GetReturnDetailResult 
+    GetReturnList(params returnsentity.GetReturnListRequest) returnsentity.GetReturnListResult 
+    Confirm(params returnsentity.ConfirmRequest) returnsentity.ConfirmResult 
+    Dispute(params returnsentity.DisputeRequest) returnsentity.DisputeResult
+	//accounthealth
+	ShopPerformance() accounthealthentity.ShopPerformanceResult 
+    ShopPenalty() accounthealthentity.ShopPenaltyResult
+	//sellerchat
+    GetMessage(params sellerchatentity.GetMessageRequest) sellerchatentity.GetMessageResult 
+    SendMessage(params sellerchatentity.SendMessageRequest) sellerchatentity.SendMessageResult 
+    GetConversationList(params sellerchatentity.GetConversationListRequest) sellerchatentity.GetConversationListResult 
+    GetOneConversation(params sellerchatentity.GetOneConversationRequest) sellerchatentity.GetOneConversationResult 
+    DeleteConversation(params sellerchatentity.DeleteConversationRequest) sellerchatentity.DeleteConversationResult 
+    PinConversation(params sellerchatentity.PinConversationRequest) sellerchatentity.PinConversationResult 
+    UnpinConversation(params sellerchatentity.UnpinConversationRequest) sellerchatentity.UnpinConversationResult 
+    ReadConversation(params sellerchatentity.ReadConversationRequest) sellerchatentity.ReadConversationResult 
+    UnreadConversation(params sellerchatentity.UnreadConversationRequest) sellerchatentity.UnreadConversationResult 
+    GetOfferToggleStatus(params sellerchatentity.GetOfferToggleStatusRequest) sellerchatentity.GetOfferToggleStatusResult 
+    SetOfferToggleStatus(params sellerchatentity.SetOfferToggleStatusRequest) sellerchatentity.SetOfferToggleStatusResult 
+    SUploadImage(file string) sellerchatentity.UploadImageResult 
 
 }
 
@@ -182,6 +275,15 @@ type Shopee struct {
 	firstmile.FirstMile
 	payment.Payment
 	discount.Discount
+	bundledeal.BundleDeal
+	addondeal.AddOnDeal
+	voucher.Voucher
+	followprize.FollowPrize
+	toppicks.TopPicks
+	shopcategory.ShopCategory
+	returns.Returns
+	accounthealth.AccountHealth
+	sellerchat.Sellerchat
 }
 
 //shopeeList 接口列表
@@ -201,6 +303,15 @@ func Register(name string, cfg *shopeeConfig.Config) {
 		firstmile.FirstMile{Config:cfg},
 		payment.Payment{Config:cfg},
 		discount.Discount{Config:cfg},
+		bundledeal.BundleDeal{Config:cfg},
+		addondeal.AddOnDeal{Config:cfg},
+		voucher.Voucher{Config:cfg},
+		followprize.FollowPrize{Config:cfg},
+		toppicks.TopPicks{Config:cfg},
+		shopcategory.ShopCategory{Config:cfg},
+		returns.Returns{Config:cfg},
+		accounthealth.AccountHealth{Config:cfg},
+		sellerchat.Sellerchat{Config:cfg},
 	}
 }
 
