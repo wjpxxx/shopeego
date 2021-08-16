@@ -43,7 +43,10 @@ import (
 	accounthealthentity "github.com/wjpxxx/shopeego/accounthealth/entity"
 	"github.com/wjpxxx/shopeego/sellerchat"
 	sellerchatentity "github.com/wjpxxx/shopeego/sellerchat/entity"
-	
+	"github.com/wjpxxx/shopeego/public"
+	publicentity "github.com/wjpxxx/shopeego/public/entity"
+	"github.com/wjpxxx/shopeego/push"
+	pushentity "github.com/wjpxxx/shopeego/push/entity"
 )
 
 //Shopeer
@@ -259,6 +262,12 @@ type Shopeer interface {
     GetOfferToggleStatus(params sellerchatentity.GetOfferToggleStatusRequest) sellerchatentity.GetOfferToggleStatusResult 
     SetOfferToggleStatus(params sellerchatentity.SetOfferToggleStatusRequest) sellerchatentity.SetOfferToggleStatusResult 
     SUploadImage(file string) sellerchatentity.UploadImageResult 
+	//public
+    GetShopsByPartner(params publicentity.GetShopsByPartnerRequest) publicentity.GetShopsByPartnerResult 
+    GetMerchantsByPartner(params publicentity.GetMerchantsByPartnerRequest) publicentity.GetMerchantsByPartnerResult 
+    //push
+    GetPushConfig(params pushentity.GetPushConfigRequest) pushentity.GetPushConfigResult 
+    SetPushConfig(params pushentity.SetPushConfigRequest) pushentity.SetPushConfigResult 
 
 }
 
@@ -284,6 +293,8 @@ type Shopee struct {
 	returns.Returns
 	accounthealth.AccountHealth
 	sellerchat.Sellerchat
+	public.Public
+	push.Push
 }
 
 //shopeeList 接口列表
@@ -312,6 +323,8 @@ func Register(name string, cfg *shopeeConfig.Config) {
 		returns.Returns{Config:cfg},
 		accounthealth.AccountHealth{Config:cfg},
 		sellerchat.Sellerchat{Config:cfg},
+		public.Public{Config:cfg},
+		push.Push{Config:cfg},
 	}
 }
 
