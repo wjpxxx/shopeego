@@ -332,6 +332,33 @@ func Register(name string, cfg *shopeeConfig.Config) {
 func GetApi(name string) Shopeer {
 	return shopeeList[name]
 }
+//NewApi
+func NewApi(cfg *shopeeConfig.Config)Shopeer{
+	return &Shopee{
+		auth.Auth{Config: cfg},
+		order.Order{Config: cfg},
+		logistics.Logistics{Config: cfg},
+		product.Product{Config: cfg},
+		globalproduct.GlobalProduct{Config: cfg},
+		mediaspace.MediaSpace{Config: cfg},
+		shop.Shop{Config: cfg},
+		merchant.Merchant{Config: cfg},
+		firstmile.FirstMile{Config:cfg},
+		payment.Payment{Config:cfg},
+		discount.Discount{Config:cfg},
+		bundledeal.BundleDeal{Config:cfg},
+		addondeal.AddOnDeal{Config:cfg},
+		voucher.Voucher{Config:cfg},
+		followprize.FollowPrize{Config:cfg},
+		toppicks.TopPicks{Config:cfg},
+		shopcategory.ShopCategory{Config:cfg},
+		returns.Returns{Config:cfg},
+		accounthealth.AccountHealth{Config:cfg},
+		sellerchat.Sellerchat{Config:cfg},
+		public.Public{Config:cfg},
+		push.Push{Config:cfg},
+	}
+}
 
 //init
 func init() {
