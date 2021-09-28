@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjpxxx/letgo/httpclient"
 	"github.com/wjpxxx/shopeego/auth/entity"
 	"github.com/wjpxxx/shopeego/commonentity"
 	shopeeConfig "github.com/wjpxxx/shopeego/config"
@@ -29,7 +30,7 @@ func (a *Auth) AuthorizationURL() string {
 		a.Config.GetApiURL("shop/auth_partner"),
 		a.Config.PartnerID,
 		ti,
-		a.Config.RedirectURL,
+		httpclient.UrlEncode(a.Config.RedirectURL),
 		sign,
 	)
 }
