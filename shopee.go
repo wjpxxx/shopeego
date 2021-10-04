@@ -51,6 +51,7 @@ import (
 
 //Shopeer
 type Shopeer interface {
+	GetPartnerID() int64
 	//auth
 	AuthorizationURL() string
 	GetAccesstoken(code string, shopID int64) authEntity.GetAccessTokenResult

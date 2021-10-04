@@ -533,3 +533,7 @@ func (p *Product) SearchItem(offset string, pageSize int, itemName string, attri
 	}
 	return result
 }
+//GetPartnerID
+func (p *Product)GetPartnerID() int64{
+	return p.Config.PartnerID
+}
