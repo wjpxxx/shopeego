@@ -12,7 +12,7 @@ type LogisticInfoEntity struct{
 	ShippingFee float32 `json:"shipping_fee"`
 	SizeID int64 `json:"size_id"`
 	IsFree bool `json:"is_free"`
-	EstimatedShippingFee bool `json:"estimated_shipping_fee"`
+	EstimatedShippingFee float32 `json:"estimated_shipping_fee"`
 }
 
 //String
