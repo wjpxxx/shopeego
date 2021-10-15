@@ -2,7 +2,6 @@ package order
 
 import (
 	"strings"
-
 	"github.com/wjpxxx/letgo/lib"
 	shopeeConfig "github.com/wjpxxx/shopeego/config"
 	"github.com/wjpxxx/shopeego/order/entity"
@@ -11,6 +10,7 @@ import (
 const (
 	CREATE_TIME        TimeRangeField = "create_time"
 	UPDATE_TIME        TimeRangeField = "update_time"
+	ALL                OrderStatus    = ""
 	UNPAID             OrderStatus    = "UNPAID"
 	READY_TO_SHIP      OrderStatus    = "READY_TO_SHIP"
 	PROCESSED          OrderStatus    = "PROCESSED"
@@ -52,7 +52,7 @@ type Order struct {
 func (o *Order) GetOrderList(
 	timeRangeField TimeRangeField,
 	timeFrom, timeTo, pageSize int,
-	cursor string,
+	cursor int,
 	orderStatus OrderStatus,
 	responseOptionalFields string) entity.GetOrderListResult {
 	method := "order/get_order_list"
@@ -62,8 +62,12 @@ func (o *Order) GetOrderList(
 		"time_to":                  timeTo,
 		"page_size":                pageSize,
 		"cursor":                   cursor,
-		"order_status":             orderStatus,
-		"response_optional_fields": responseOptionalFields,
+	}
+	if orderStatus!=""{
+		params["order_status"]=orderStatus
+	}
+	if responseOptionalFields!=""{
+		params["response_optional_fields"]=responseOptionalFields
 	}
 	result := entity.GetOrderListResult{}
 	err := o.Config.HttpGet(method, params, &result)

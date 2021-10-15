@@ -60,7 +60,7 @@ type Shopeer interface {
 	GetOrderList(
 		timeRangeField order.TimeRangeField,
 		timeFrom, timeTo, pageSize int,
-		cursor string,
+		cursor int,
 		orderStatus order.OrderStatus,
 		responseOptionalFields string) orderEntity.GetOrderListResult
 	GetShipmentList(cursor string, pageSize int) orderEntity.GetShipmentListResult
@@ -76,10 +76,10 @@ type Shopeer interface {
 	GetTrackingNumber(orderSn, packageNumber string, responseOptionalFields ...string) logisticsEntity.GetTrackingNumberResult
 	ShipOrder(orderSn, packageNumber string, pickup *logisticsEntity.ShipOrderRequestPickupEntity, dropoff *logisticsEntity.ShipOrderRequestDropoffEntity, nonIntegrated *logisticsEntity.ShipOrderRequestNonIntegratedEntity) logisticsEntity.ShipOrderResult
 	UpdateShippingOrder(orderSn, packageNumber string, pickup *logisticsEntity.UpdateShippingOrderRequestPickupEntity) logisticsEntity.UpdateShippingOrderResult
-	GetShippingDocumentParameter(orderList *logisticsEntity.ShippingDocumentParameterRequestOrderListEntity) logisticsEntity.GetShippingDocumentParameterResult
-	CreateShippingDocument(orderList *logisticsEntity.CreateShippingDocumentRequestOrderListEntity) logisticsEntity.CreateShippingDocumentResult
-	GetShippingDocumentResult(orderList *logisticsEntity.GetShippingDocumentResultRequestOrderListEntity) logisticsEntity.GetShippingDocumentResult
-	DownloadShippingDocument(orderList *logisticsEntity.DownloadShippingDocumentRequestOrderListEntity) logisticsEntity.DownloadShippingDocumentResult
+	GetShippingDocumentParameter(orderList []logisticsEntity.ShippingDocumentParameterRequestOrderListEntity) logisticsEntity.GetShippingDocumentParameterResult
+	CreateShippingDocument(orderList []logisticsEntity.CreateShippingDocumentRequestOrderListEntity) logisticsEntity.CreateShippingDocumentResult
+	GetShippingDocumentResult(orderList []logisticsEntity.GetShippingDocumentResultRequestOrderListEntity) logisticsEntity.GetShippingDocumentResult
+	DownloadShippingDocument(orderList logisticsEntity.DownloadShippingDocumentRequestOrderListEntity) logisticsEntity.DownloadShippingDocumentResult
 	GetShippingDocumentInfo(orderSn, packageNumber string) logisticsEntity.GetShippingDocumentInfoResult
 	GetTrackingInfo(orderSn, packageNumber string) logisticsEntity.GetTrackingInfoResult
 	GetAddressList() logisticsEntity.GetAddressListResult

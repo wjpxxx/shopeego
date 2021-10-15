@@ -119,10 +119,10 @@ func (l *Logistics) UpdateShippingOrder(orderSn, packageNumber string, pickup *e
 //GetShippingDocumentParameter
 //@Title Use this api to get the selectable shipping_document_type and suggested shipping_document_type.
 //@Description https://open.shopee.com/documents?module=95&type=1&id=549&version=2
-func (l *Logistics) GetShippingDocumentParameter(orderList *entity.ShippingDocumentParameterRequestOrderListEntity) entity.GetShippingDocumentParameterResult {
+func (l *Logistics) GetShippingDocumentParameter(orderList []entity.ShippingDocumentParameterRequestOrderListEntity) entity.GetShippingDocumentParameterResult {
 	method := "logistics/get_shipping_document_parameter"
 	params := lib.InRow{
-		"order_list": *orderList,
+		"order_list": orderList,
 	}
 	result := entity.GetShippingDocumentParameterResult{}
 	err := l.Config.HttpPost(method, params, &result)
@@ -135,10 +135,10 @@ func (l *Logistics) GetShippingDocumentParameter(orderList *entity.ShippingDocum
 //CreateShippingDocument
 //@Title Use this api to create shipping document task for each order or package
 //@Description https://open.shopee.com/documents?module=95&type=1&id=547&version=2
-func (l *Logistics) CreateShippingDocument(orderList *entity.CreateShippingDocumentRequestOrderListEntity) entity.CreateShippingDocumentResult {
+func (l *Logistics) CreateShippingDocument(orderList []entity.CreateShippingDocumentRequestOrderListEntity) entity.CreateShippingDocumentResult {
 	method := "logistics/create_shipping_document"
 	params := lib.InRow{
-		"order_list": *orderList,
+		"order_list": orderList,
 	}
 	result := entity.CreateShippingDocumentResult{}
 	err := l.Config.HttpPost(method, params, &result)
@@ -151,10 +151,10 @@ func (l *Logistics) CreateShippingDocument(orderList *entity.CreateShippingDocum
 //GetShippingDocumentResult
 //@Title Use this api to get the shipping_document of each order or package status.
 //@Description https://open.shopee.com/documents?module=95&type=1&id=561&version=2
-func (l *Logistics) GetShippingDocumentResult(orderList *entity.GetShippingDocumentResultRequestOrderListEntity) entity.GetShippingDocumentResult {
+func (l *Logistics) GetShippingDocumentResult(orderList []entity.GetShippingDocumentResultRequestOrderListEntity) entity.GetShippingDocumentResult {
 	method := "logistics/get_shipping_document_result"
 	params := lib.InRow{
-		"order_list": *orderList,
+		"order_list": orderList,
 	}
 	result := entity.GetShippingDocumentResult{}
 	err := l.Config.HttpPost(method, params, &result)
@@ -167,10 +167,13 @@ func (l *Logistics) GetShippingDocumentResult(orderList *entity.GetShippingDocum
 //DownloadShippingDocument
 //@Title Use this api to download shipping_document. You have to call v2.logistics.create_shipping_document to create a new shipping document task first and call v2.logistics.get_shipping_document_resut to get the task status second. If the task is READY, you can download this shipping document.
 //@Description https://open.shopee.com/documents?module=95&type=1&id=548&version=2
-func (l *Logistics) DownloadShippingDocument(orderList *entity.DownloadShippingDocumentRequestOrderListEntity) entity.DownloadShippingDocumentResult {
+func (l *Logistics) DownloadShippingDocument(orderList entity.DownloadShippingDocumentRequestOrderListEntity) entity.DownloadShippingDocumentResult {
 	method := "logistics/download_shipping_document"
 	params := lib.InRow{
-		"order_list": *orderList,
+		"order_list": orderList.OrderList,
+	}
+	if orderList.ShippingDocumentType!=""{
+		params["shipping_document_type"]=orderList.ShippingDocumentType
 	}
 	result := entity.DownloadShippingDocumentResult{}
 	err := l.Config.HttpPost(method, params, &result)

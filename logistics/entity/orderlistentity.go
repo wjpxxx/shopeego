@@ -41,7 +41,8 @@ func(c GetShippingDocumentResultRequestOrderListEntity)String()string{
 }
 //DownloadShippingDocumentRequestOrderListEntity
 type DownloadShippingDocumentRequestOrderListEntity struct{
-	ShippingDocumentParameterRequestOrderListEntity
+	OrderList []ShippingDocumentParameterRequestOrderListEntity `json:"order_list"`
+	ShippingDocumentType string `json:"shipping_document_type"`
 }
 
 //String

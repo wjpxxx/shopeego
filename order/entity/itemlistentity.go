@@ -12,7 +12,7 @@ type ItemListEntity struct{
 	ModelID int64 `json:"model_id"`
 	ModelName string `json:"model_name"`
 	ModelSku string `json:"model_sku"`
-	ModelQuantityPurchased int64 `json:"model_quantity_purchased"`
+	ModelQuantityPurchased int `json:"model_quantity_purchased"`
 	ModelOriginalPrice float32 `json:"model_original_price"`
 	ModelDiscountedPrice float32 `json:"model_discounted_price"`
 	Wholesale bool `json:"wholesale"`
