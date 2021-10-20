@@ -89,7 +89,7 @@ type Shopeer interface {
 	UpdateChannel(logisticsChannelID int64, enabled, preferred, codEnabled bool) logisticsEntity.UpdateChannelResult
 	BatchShipOrder(orderList *logisticsEntity.BatchShipOrderRequestOrderListEntity, pickup *logisticsEntity.BatchShipOrderRequestPickupEntity, dropoff *logisticsEntity.BatchShipOrderRequestDropoffEntity, nonIntegrated *logisticsEntity.BatchShipOrderRequestNonIntegratedEntity) logisticsEntity.BatchShipOrderResult
 	//product
-	GetComment(itemID, commentID int64, cursor string, pageSize int) productEntity.GetCommentResult
+	GetComment(itemID, commentID int64, cursor int, pageSize int) productEntity.GetCommentResult
 	ReplyComment(commentList []productEntity.ReplyCommentRequestCommentEntity) productEntity.ReplyCommentResult
 	GetItemBaseInfo(itemIdList []int64) productEntity.GetItemBaseInfoResult
 	GetItemExtraInfo(itemIdList []int64) productEntity.GetItemExtraInfoResult
@@ -101,7 +101,7 @@ type Shopeer interface {
 	UpdateSizeChart(itemID int64, sizeChart string) productEntity.UpdateSizeChartResult
 	UnlistItem(itemList []productEntity.UnlistItemItemListEntity) productEntity.UnlistItemResult
 	BoostItem(itemIdList []int64) productEntity.BoostItemResult
-	GetBoostedList(itemIdList []int64) productEntity.GetBoostedListResult
+	GetBoostedList() productEntity.GetBoostedListResult
 	GetDtsLimit(categoryID int64) productEntity.GetDtsLimitResult
 	GetItemLimit(categoryID int64) productEntity.GetItemLimitResult
 	SupportSizeChart(category int64) productEntity.SupportSizeChartResult

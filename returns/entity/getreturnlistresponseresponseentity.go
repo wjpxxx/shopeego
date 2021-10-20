@@ -8,7 +8,7 @@ type GetReturnListResponseResponseEntity struct{
     Image	[]string	`json:"image"`
     Reason	string	`json:"reason"`
     TextReason	string	`json:"text_reason"`
-    ReturnSn	int	`json:"return_sn"`
+    ReturnSn	int64	`json:"return_sn"`
     RefundAmount	float32	`json:"refund_amount"`
     Currency	string	`json:"currency"`
     CreateTime	int	`json:"create_time"`
@@ -25,7 +25,6 @@ type GetReturnListResponseResponseEntity struct{
     OrderSn	string	`json:"order_sn"`
     ReturnShipDueDate	int	`json:"return_ship_due_date"`
     ReturnSellerDueDate	int	`json:"return_seller_due_date"`
-    More	bool	`json:"more"`
 }
 func (g GetReturnListResponseResponseEntity) String() string {
     return lib.ObjectToString(g)

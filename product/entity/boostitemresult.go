@@ -20,7 +20,7 @@ func (r BoostItemResult) String() string {
 //BoostItemResultResponse
 type BoostItemResultResponse struct {
 	FailureList []FailureEntity          `json:"failure_list"`
-	SuccessList []BoostItemSuccessEntity `json:"success_list"`
+	SuccessList BoostItemSuccessEntity `json:"success_list"`
 }
 
 //String

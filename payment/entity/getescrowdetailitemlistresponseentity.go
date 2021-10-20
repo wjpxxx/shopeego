@@ -17,7 +17,7 @@ type GetEscrowDetailItemListResponseEntity struct{
     DiscountFromVoucherShopee	float32	`json:"discount_from_voucher_shopee"`
     DiscountFromVoucherSeller	float32	`json:"discount_from_voucher_seller"`
     ActivityType	string	`json:"activity_type"`
-    ActivityId	string	`json:"activity_id"`
+    ActivityId	int64	`json:"activity_id"`
     IsMainItem	bool	`json:"is_main_item"`
 }
 func (g GetEscrowDetailItemListResponseEntity) String() string {

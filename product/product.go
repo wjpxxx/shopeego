@@ -45,13 +45,17 @@ type Product struct {
 //GetComment
 //@Title Use this api to get comment by shop_id, item_id, or comment_id.
 //@Description https://open.shopee.com/documents?module=89&type=1&id=562&version=2
-func (p *Product) GetComment(itemID, commentID int64, cursor string, pageSize int) entity.GetCommentResult {
+func (p *Product) GetComment(itemID, commentID int64, cursor int, pageSize int) entity.GetCommentResult {
 	method := "product/get_comment"
 	params := lib.InRow{
-		"item_id":    itemID,
-		"comment_id": commentID,
 		"cursor":     cursor,
 		"page_size":  pageSize,
+	}
+	if itemID>0{
+		params["item_id"]=itemID
+	}
+	if commentID>0{
+		params["comment_id"]=commentID
 	}
 	result := entity.GetCommentResult{}
 	err := p.Config.HttpGet(method, params, &result)
@@ -66,8 +70,11 @@ func (p *Product) GetComment(itemID, commentID int64, cursor string, pageSize in
 //@Description https://open.shopee.com/documents?module=89&type=1&id=563&version=2
 func (p *Product) ReplyComment(commentList []entity.ReplyCommentRequestCommentEntity) entity.ReplyCommentResult {
 	method := "product/reply_comment"
+	params := lib.InRow{
+		"comment_list":commentList,
+	}
 	result := entity.ReplyCommentResult{}
-	err := p.Config.HttpPost(method, commentList, &result)
+	err := p.Config.HttpPost(method, params, &result)
 	if err != nil {
 		result.Error = err.Error()
 	}
@@ -233,10 +240,11 @@ func (p *Product) BoostItem(itemIdList []int64) entity.BoostItemResult {
 //GetBoostedList
 //@Title Get boosted item list.
 //@Description https://open.shopee.com/documents?module=89&type=1&id=626&version=2
-func (p *Product) GetBoostedList(itemIdList []int64) entity.GetBoostedListResult {
+func (p *Product) GetBoostedList() entity.GetBoostedListResult {
 	method := "product/get_boosted_list"
 	result := entity.GetBoostedListResult{}
-	err := p.Config.HttpGet(method, nil, &result)
+	params := lib.InRow{}
+	err := p.Config.HttpGet(method, params, &result)
 	if err != nil {
 		result.Error = err.Error()
 	}
