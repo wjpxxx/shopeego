@@ -54,13 +54,15 @@ func (l *Logistics) GetTrackingNumber(orderSn, packageNumber string, responseOpt
 	responseOptionalFieldsStr := ""
 	if len(responseOptionalFields) > 0 {
 		responseOptionalFieldsStr = strings.Join(responseOptionalFields, ",")
-	} else {
-		responseOptionalFieldsStr = entity.TrackingNumberResponseOptionalFields()
 	}
 	params := lib.InRow{
 		"order_sn":                 orderSn,
-		"package_number":           packageNumber,
-		"response_optional_fields": responseOptionalFieldsStr,
+	}
+	if packageNumber!=""{
+		params["package_number"]=packageNumber
+	}
+	if responseOptionalFieldsStr!=""{
+		params["response_optional_fields"]=responseOptionalFieldsStr
 	}
 	result := entity.GetTrackingNumberResult{}
 	err := l.Config.HttpGet(method, params, &result)
@@ -77,7 +79,9 @@ func (l *Logistics) ShipOrder(orderSn, packageNumber string, pickup *entity.Ship
 	method := "logistics/ship_order"
 	params := lib.InRow{
 		"order_sn":       orderSn,
-		"package_number": packageNumber,
+	}
+	if packageNumber!=""{
+		params["package_number"]=packageNumber
 	}
 	if pickup != nil {
 		params["pickup"] = *pickup
@@ -300,10 +304,10 @@ func (l *Logistics) UpdateChannel(logisticsChannelID int64, enabled, preferred, 
 //BatchShipOrder
 //@Title Use this api to batch initiate logistics including arrange pickup, dropoff or shipment for non-integrated logistic channels. Should call v2.logistics.get_shipping_parameter to fetch all required param first. It's recommended to initiate logistics one hour after the orders were placed since there is one-hour window buyer can cancel any order without request to seller.
 //@Description https://open.shopee.com/documents?module=95&type=1&id=688&version=2
-func (l *Logistics) BatchShipOrder(orderList *entity.BatchShipOrderRequestOrderListEntity, pickup *entity.BatchShipOrderRequestPickupEntity, dropoff *entity.BatchShipOrderRequestDropoffEntity, nonIntegrated *entity.BatchShipOrderRequestNonIntegratedEntity) entity.BatchShipOrderResult {
+func (l *Logistics) BatchShipOrder(orderList []entity.BatchShipOrderRequestOrderListEntity, pickup *entity.BatchShipOrderRequestPickupEntity, dropoff *entity.BatchShipOrderRequestDropoffEntity, nonIntegrated *entity.BatchShipOrderRequestNonIntegratedEntity) entity.BatchShipOrderResult {
 	method := "logistics/batch_ship_order"
 	params := lib.InRow{
-		"order_list": *orderList,
+		"order_list": orderList,
 	}
 	if pickup != nil {
 		params["pickup"] = *pickup

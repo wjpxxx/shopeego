@@ -87,7 +87,7 @@ type Shopeer interface {
 	DeleteAddress(addressID int64) logisticsEntity.DeleteAddressResult
 	GetChannelList() logisticsEntity.GetChannelListResult
 	UpdateChannel(logisticsChannelID int64, enabled, preferred, codEnabled bool) logisticsEntity.UpdateChannelResult
-	BatchShipOrder(orderList *logisticsEntity.BatchShipOrderRequestOrderListEntity, pickup *logisticsEntity.BatchShipOrderRequestPickupEntity, dropoff *logisticsEntity.BatchShipOrderRequestDropoffEntity, nonIntegrated *logisticsEntity.BatchShipOrderRequestNonIntegratedEntity) logisticsEntity.BatchShipOrderResult
+	BatchShipOrder(orderList []logisticsEntity.BatchShipOrderRequestOrderListEntity, pickup *logisticsEntity.BatchShipOrderRequestPickupEntity, dropoff *logisticsEntity.BatchShipOrderRequestDropoffEntity, nonIntegrated *logisticsEntity.BatchShipOrderRequestNonIntegratedEntity) logisticsEntity.BatchShipOrderResult
 	//product
 	GetComment(itemID, commentID int64, cursor int, pageSize int) productEntity.GetCommentResult
 	ReplyComment(commentList []productEntity.ReplyCommentRequestCommentEntity) productEntity.ReplyCommentResult

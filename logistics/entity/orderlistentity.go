@@ -53,7 +53,7 @@ func(d DownloadShippingDocumentRequestOrderListEntity)String()string{
 //BatchShipOrderRequestOrderListEntity
 type BatchShipOrderRequestOrderListEntity struct{
 	OrderSn string `json:"order_sn"`
-	PackageNumber string `json:"package_number"`
+	//PackageNumber string `json:"package_number"`
 }
 
 //String
