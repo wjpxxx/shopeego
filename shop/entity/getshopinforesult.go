@@ -10,7 +10,7 @@ type GetShopInfoResult struct {
 	ShopName     string               `json:"shop_name"`
 	Region       string               `json:"region"`
 	Status       string               `json:"status"`
-	SipAffiShops []SipAffiShopsEntity `json:"sip_affi_shops"`
+	SipAffiShops SipAffiShopsList `json:"sip_affi_shops"`
 	IsCb         bool                 `json:"is_cb"`
 	IsCnsc       bool                 `json:"is_cnsc"`
 	commonentity.Result
@@ -20,5 +20,13 @@ type GetShopInfoResult struct {
 
 //String
 func (g GetShopInfoResult) String() string {
+	return lib.ObjectToString(g)
+}
+
+
+type SipAffiShopsList []SipAffiShopsEntity
+
+//String
+func (g SipAffiShopsList) String() string {
 	return lib.ObjectToString(g)
 }
