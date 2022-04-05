@@ -95,7 +95,9 @@ func (c *Config) Http(requestMethod, method string, data interface{}, out interf
 		return errors.New(result.Err)
 	}
 	if result.Code != 200 {
-		return errors.New("请求失败")
+		if result.Body() == "" {
+			return errors.New("请求失败")
+		}
 	}
 	if method == "logistics/download_shipping_document" {
 		//下载快递单
