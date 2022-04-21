@@ -266,9 +266,11 @@ type Shopeer interface {
 	//public
     GetShopsByPartner(params publicentity.GetShopsByPartnerRequest) publicentity.GetShopsByPartnerResult 
     GetMerchantsByPartner(params publicentity.GetMerchantsByPartnerRequest) publicentity.GetMerchantsByPartnerResult 
-    //push
+    GetRefreshTokenByUpgradeCode(upgradeCode string, shopIdList []int64) publicentity.GetRefreshTokenByUpgradeCodeResult
+	//push
     GetPushConfig(params pushentity.GetPushConfigRequest) pushentity.GetPushConfigResult 
-    SetPushConfig(params pushentity.SetPushConfigRequest) pushentity.SetPushConfigResult 
+    SetPushConfig(params pushentity.SetPushConfigRequest) pushentity.SetPushConfigResult
+	
 
 }
 
