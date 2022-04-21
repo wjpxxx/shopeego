@@ -45,7 +45,7 @@ func (c *Config) GetCommonParam(method string) string {
 		"partner_id": c.PartnerID,
 		"timestamp":  ti,
 	}
-	if c.shopInfo != nil {
+	if c.shopInfo != nil&&method!="public/get_refresh_token_by_upgrade_code" {
 		param["access_token"] = c.shopInfo.AccessToken
 		if strings.Index(method, "merchant") != -1 {
 			param["merchant_id"] = c.shopInfo.ShopID
