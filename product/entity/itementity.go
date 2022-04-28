@@ -72,7 +72,7 @@ type AddItemRequestItemEntity struct{
 	Weight float32 `json:"weight"`
 	ItemName string `json:"item_name"`
 	ItemStatus string `json:"item_status"`
-	Dimension DimensionEntity `json:"dimension"`
+	Dimension *DimensionEntity `json:"dimension"`
 	NormalStock int `json:"normal_stock"`
 	LogisticInfo []LogisticInfoEntity `json:"logistic_info"`
 	AttributeList []AttributeEntity `json:"attribute_list"`
