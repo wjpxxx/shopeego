@@ -105,7 +105,7 @@ type Shopeer interface {
 	GetDtsLimit(categoryID int64) productEntity.GetDtsLimitResult
 	GetItemLimit(categoryID int64) productEntity.GetItemLimitResult
 	SupportSizeChart(category int64) productEntity.SupportSizeChartResult
-	InitTierVariation(itemID int64, tierVariation productEntity.TierVariationEntity, model productEntity.InitTierVariationModelEntity) productEntity.InitTierVariationResult
+	InitTierVariation(itemID int64, tierVariation []productEntity.TierVariationEntity, model []productEntity.InitTierVariationModelEntity) productEntity.InitTierVariationResult
 	UpdateTierVariation(itemID int64, tierVariation []productEntity.TierVariationEntity) productEntity.UpdateTierVariationResult
 	UpdateModel(itemID int64, model []productEntity.UpdateModelEntity) productEntity.UpdateModelResult
 	AddModel(itemID int64, modelList []productEntity.InitTierVariationModelEntity) productEntity.AddModelResult
