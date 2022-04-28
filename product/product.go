@@ -299,7 +299,7 @@ func (p *Product) SupportSizeChart(category int64) entity.SupportSizeChartResult
 //InitTierVariation
 //@Title Init item tier-variation struct.
 //@Description https://open.shopee.com/documents?module=89&type=1&id=646&version=2
-func (p *Product) InitTierVariation(itemID int64, tierVariation entity.TierVariationEntity, model entity.InitTierVariationModelEntity) entity.InitTierVariationResult {
+func (p *Product) InitTierVariation(itemID int64, tierVariation []entity.TierVariationEntity, model []entity.InitTierVariationModelEntity) entity.InitTierVariationResult {
 	method := "product/init_tier_variation"
 	result := entity.InitTierVariationResult{}
 	params := lib.InRow{
