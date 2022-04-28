@@ -67,7 +67,7 @@ func(i ItemListEntity)String()string{
 
 //AddItemRequestItemEntity
 type AddItemRequestItemEntity struct{
-	OriginalPrice float32 `json:"original_price "`
+	OriginalPrice float32 `json:"original_price"`
 	Description string `json:"description"`
 	Weight float32 `json:"weight"`
 	ItemName string `json:"item_name"`
