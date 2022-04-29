@@ -56,13 +56,13 @@ func (l *Logistics) GetTrackingNumber(orderSn, packageNumber string, responseOpt
 		responseOptionalFieldsStr = strings.Join(responseOptionalFields, ",")
 	}
 	params := lib.InRow{
-		"order_sn":                 orderSn,
+		"order_sn": orderSn,
 	}
-	if packageNumber!=""{
-		params["package_number"]=packageNumber
+	if packageNumber != "" {
+		params["package_number"] = packageNumber
 	}
-	if responseOptionalFieldsStr!=""{
-		params["response_optional_fields"]=responseOptionalFieldsStr
+	if responseOptionalFieldsStr != "" {
+		params["response_optional_fields"] = responseOptionalFieldsStr
 	}
 	result := entity.GetTrackingNumberResult{}
 	err := l.Config.HttpGet(method, params, &result)
@@ -78,10 +78,10 @@ func (l *Logistics) GetTrackingNumber(orderSn, packageNumber string, responseOpt
 func (l *Logistics) ShipOrder(orderSn, packageNumber string, pickup *entity.ShipOrderRequestPickupEntity, dropoff *entity.ShipOrderRequestDropoffEntity, nonIntegrated *entity.ShipOrderRequestNonIntegratedEntity) entity.ShipOrderResult {
 	method := "logistics/ship_order"
 	params := lib.InRow{
-		"order_sn":       orderSn,
+		"order_sn": orderSn,
 	}
-	if packageNumber!=""{
-		params["package_number"]=packageNumber
+	if packageNumber != "" {
+		params["package_number"] = packageNumber
 	}
 	if pickup != nil {
 		params["pickup"] = *pickup
@@ -176,8 +176,8 @@ func (l *Logistics) DownloadShippingDocument(orderList entity.DownloadShippingDo
 	params := lib.InRow{
 		"order_list": orderList.OrderList,
 	}
-	if orderList.ShippingDocumentType!=""{
-		params["shipping_document_type"]=orderList.ShippingDocumentType
+	if orderList.ShippingDocumentType != "" {
+		params["shipping_document_type"] = orderList.ShippingDocumentType
 	}
 	result := entity.DownloadShippingDocumentResult{}
 	err := l.Config.HttpPost(method, params, &result)
@@ -285,13 +285,20 @@ func (l *Logistics) GetChannelList() entity.GetChannelListResult {
 //UpdateChannel
 //@Title Use this api to update shop level logistics channel's configuration.
 //@Description https://open.shopee.com/documents?module=95&type=1&id=554&version=2
-func (l *Logistics) UpdateChannel(logisticsChannelID int64, enabled, preferred, codEnabled bool) entity.UpdateChannelResult {
+func (l *Logistics) UpdateChannel(logisticsChannelID int64, enableds ...bool) entity.UpdateChannelResult {
 	method := "logistics/update_channel"
 	params := lib.InRow{
 		"logistics_channel_id": logisticsChannelID,
-		"enabled":              enabled,
-		"preferred":            preferred,
-		"cod_enabled":          codEnabled,
+	}
+	if len(enableds) == 1 {
+		params["enabled"] = enableds[0]
+	} else if len(enableds) == 2 {
+		params["enabled"] = enableds[0]
+		params["preferred"] = enableds[1]
+	} else if len(enableds) == 3 {
+		params["enabled"] = enableds[0]
+		params["preferred"] = enableds[1]
+		params["cod_enabled"] = enableds[2]
 	}
 	result := entity.UpdateChannelResult{}
 	err := l.Config.HttpPost(method, params, &result)

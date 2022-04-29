@@ -86,7 +86,7 @@ type Shopeer interface {
 	SetAddressConfig(showPickupAddress bool, AddressTypeConfig logisticsEntity.AddressTypeConfigEntity) logisticsEntity.SetAddressConfigResult
 	DeleteAddress(addressID int64) logisticsEntity.DeleteAddressResult
 	GetChannelList() logisticsEntity.GetChannelListResult
-	UpdateChannel(logisticsChannelID int64, enabled, preferred, codEnabled bool) logisticsEntity.UpdateChannelResult
+	UpdateChannel(logisticsChannelID int64, enableds ...bool) logisticsEntity.UpdateChannelResult
 	BatchShipOrder(orderList []logisticsEntity.BatchShipOrderRequestOrderListEntity, pickup *logisticsEntity.BatchShipOrderRequestPickupEntity, dropoff *logisticsEntity.BatchShipOrderRequestDropoffEntity, nonIntegrated *logisticsEntity.BatchShipOrderRequestNonIntegratedEntity) logisticsEntity.BatchShipOrderResult
 	//product
 	GetComment(itemID, commentID int64, cursor int, pageSize int) productEntity.GetCommentResult
