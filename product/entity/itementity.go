@@ -13,7 +13,7 @@ type ItemEntity struct{
 	ItemSku string `json:"item_sku"`
 	CreateTime int `json:"create_time"`
 	UpdateTime int `json:"update_time"`
-	AttributeList []Attributes `json:"attribute_list"`
+	AttributeList []AttributeEntity `json:"attribute_list"`
 	PriceInfo []PriceInfoEntity `json:"price_info"`
 	StockInfo []StockInfoEntity `json:"stock_info"`
 	Image ImageEntity `json:"image"`
@@ -75,7 +75,7 @@ type AddItemRequestItemEntity struct{
 	Dimension *DimensionEntity `json:"dimension"`
 	NormalStock int `json:"normal_stock"`
 	LogisticInfo []LogisticInfoEntity `json:"logistic_info"`
-	AttributeList []AttributeEntity `json:"attribute_list"`
+	AttributeList []Attributes `json:"attribute_list"`
 	CategoryID int64 `json:"category_id"`
 	Image ImageEntity `json:"image"`
 	PreOrder PreOrderEntity `json:"pre_order"`
