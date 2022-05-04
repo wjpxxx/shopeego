@@ -13,7 +13,7 @@ type ItemEntity struct{
 	ItemSku string `json:"item_sku"`
 	CreateTime int `json:"create_time"`
 	UpdateTime int `json:"update_time"`
-	AttributeList []AttributeEntity `json:"attribute_list"`
+	AttributeList []Attributes `json:"attribute_list"`
 	PriceInfo []PriceInfoEntity `json:"price_info"`
 	StockInfo []StockInfoEntity `json:"stock_info"`
 	Image ImageEntity `json:"image"`
@@ -124,4 +124,25 @@ type GetBoostedListItemListEntity struct{
 //String
 func(i GetBoostedListItemListEntity)String()string{
 	return lib.ObjectToString(i)
+}
+//Attributes
+type Attributes struct{
+	AttributeId int64 `json:"attribute_id"`
+	AttributeValueList []AttributeValueList `json:"attribute_value_list"`
+}
+
+//String
+func(a Attributes)String()string{
+	return lib.ObjectToString(a)
+}
+//AttributeValueList
+type AttributeValueList struct{
+	OriginalValueName string `json:"original_value_name"`
+	ValueId int64 `json:"value_id"`
+	ValueUnit string `json:"value_unit"`
+}
+
+//String
+func(a AttributeValueList)String()string{
+	return lib.ObjectToString(a)
 }
