@@ -13,7 +13,7 @@ type AddItemItemEntity struct{
 	ItemSku string `json:"item_sku"`
 	CreateTime int `json:"create_time"`
 	UpdateTime int `json:"update_time"`
-	AttributeList []AttributeEntity `json:"attribute_list"`
+	Attributes []AttributeEntity `json:"attributes"`
 	PriceInfo PriceInfoEntity `json:"price_info"`
 	StockInfo StockInfoEntity `json:"stock_info"`
 	Image ImageEntity `json:"image"`
