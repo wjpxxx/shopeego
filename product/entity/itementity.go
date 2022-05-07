@@ -17,6 +17,7 @@ type ItemEntity struct{
 	PriceInfo []PriceInfoEntity `json:"price_info"`
 	StockInfo []StockInfoEntity `json:"stock_info"`
 	Image ImageEntity `json:"image"`
+	Images ImageEntity  `json:"images"`
 	Weight string `json:"weight"`
 	Dimension DimensionEntity `json:"dimension"`
 	LogisticInfo []LogisticInfoEntity `json:"logistic_info"`
