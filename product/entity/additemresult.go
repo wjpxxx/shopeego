@@ -10,7 +10,7 @@ type AddItemResult struct {
 	commonentity.Result
 	Warning       string     `json:"warning"`
 	ItemDangerous int        `json:"item_dangerous"`
-	Response      ItemEntity `json:"response"`
+	Response      AddItemItemEntity `json:"response"`
 }
 
 //String
