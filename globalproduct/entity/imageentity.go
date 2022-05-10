@@ -22,6 +22,6 @@ type TierImageEntity struct{
 }
 
 //String
-func(i TierImageEntity)String()string{
+func(i *TierImageEntity)String()string{
 	return lib.ObjectToString(i)
 }

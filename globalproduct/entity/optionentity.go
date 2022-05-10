@@ -7,7 +7,7 @@ import (
 //OptionEntity
 type OptionEntity struct{
 	Option string `json:"option"`
-	Image TierImageEntity `json:"image"`
+	Image *TierImageEntity `json:"image"`
 }
 
 //String
